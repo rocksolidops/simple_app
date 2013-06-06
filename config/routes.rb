@@ -2,7 +2,7 @@ Ebt::Application.routes.draw do
   resources :users
 
 
-  match 'wait/:time' => 'Pages#wait'
+  match 'sleep/:time' => 'Pages#sleep'
   match 'status/:code' => 'Pages#status'
   match 'internals' => 'Pages#internals'
   match 'commands' => 'Pages#commands'

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  def wait
+  def sleep
     sleep params[:time].to_f
     render text: 'ok'
   end
