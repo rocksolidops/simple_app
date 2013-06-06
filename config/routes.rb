@@ -1,5 +1,7 @@
 Ebt::Application.routes.draw do
   match 'wait/:time' => 'Pages#wait'
+  match 'status/:code' => 'Pages#status'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
