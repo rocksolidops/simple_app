@@ -1,5 +1,5 @@
 Ebt::Application.routes.draw do
-  resources :pages, only: :index
+  match 'wait/:time' => 'Pages#wait'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
