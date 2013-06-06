@@ -10,4 +10,7 @@ class PagesController < ApplicationController
 
   def internals
   end
+
+  def commands
+  end
 end

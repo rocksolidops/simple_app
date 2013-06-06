@@ -1,5 +1,10 @@
+<%= link_to "Linux commands available", '/commands' %>
+
 <h3>Memory Usage</h3>
 <%= `ps -o rss= -p #{Process.pid}`.to_i %>kb
+
+<h3>Ruby</h3>
+<%= `ruby --version` %>
 
 <h3>Rails::Info</h3>
 <%= Rails::Info.to_html.html_safe %>
