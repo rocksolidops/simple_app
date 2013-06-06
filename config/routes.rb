@@ -1,4 +1,7 @@
 Ebt::Application.routes.draw do
+  resources :users
+
+
   match 'wait/:time' => 'Pages#wait'
   match 'status/:code' => 'Pages#status'
 
