@@ -1,3 +1,4 @@
 <h3>Linux commands available</h3>
 
-<pre><%= `bash -c "compgen -abck"`%></pre>
+Count: <%= @commands.size %>
+<pre><%= @commands.sort.join("\n") %></pre>

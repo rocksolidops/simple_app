@@ -12,6 +12,7 @@ class PagesController < ApplicationController
   end
 
   def commands
+    @commands = `bash -c "compgen -abck"`.split("\n")
   end
 
   def health_check
