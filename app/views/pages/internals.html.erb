@@ -1,0 +1,33 @@
+<h3>Memory Usage</h3>
+<%= `ps -o rss= -p #{Process.pid}`.to_i %>kb
+
+<h3>Rails::Info</h3>
+<%= Rails::Info.to_html.html_safe %>
+
+<h3>Environment</h3>
+<table>
+  <% ENV.keys.sort.each do |k| %>
+    <tr>
+      <td><%= k %></td>
+      <td><%= ENV[k] %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Gems</h3>
+<table>
+<% Gem.loaded_specs.keys.map(&:to_s).sort.each do |name| %>
+  <% spec = Gem.loaded_specs[name] %>
+  <tr>
+    <td><%= name %></td>
+    <td><%= spec.version %></td>
+  </tr>
+<% end %>
+</table>
+
+<h3>database.yml</h3>
+<pre><code><%= File.read(Rails.root.join('config/database.yml')) %></code></pre>
+
+<h4>database info (evaluated)</h4>
+<% require 'pp' %>
+<pre><code><%= YAML.load( ERB.new( File.read("config/database.yml") ).result ).pretty_inspect %></code></pre>
