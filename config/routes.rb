@@ -6,6 +6,7 @@ Ebt::Application.routes.draw do
   match 'status/:code' => 'Pages#status'
   match 'internals' => 'Pages#internals'
   match 'commands' => 'Pages#commands'
+  match 'health_check' => 'Pages#health_check'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
