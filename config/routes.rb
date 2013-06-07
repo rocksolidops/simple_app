@@ -2,6 +2,7 @@ Ebt::Application.routes.draw do
   resources :users
 
 
+  match 'bcrypt/:cost' => 'Pages#bcrypt'
   match 'sleep/:time' => 'Pages#sleep'
   match 'status/:code' => 'Pages#status'
   match 'internals' => 'Pages#internals'

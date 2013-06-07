@@ -1,4 +1,10 @@
 class PagesController < ApplicationController
+  # It starts to get fun right around 12.
+  # Each +1 doubles the amount of work.
+  def bcrypt
+    render text: BCrypt::Password.create(Time.now.to_s, cost: params[:cost].to_i)
+  end
+
   def sleep
     Kernel.sleep params[:time].to_f
     render text: 'ok'
