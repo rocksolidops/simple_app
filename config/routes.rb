@@ -1,6 +1,7 @@
 Ebt::Application.routes.draw do
   resources :users
 
+  root to: 'Pages#sleep', options: { time: 0 }
 
   match 'bcrypt/:cost' => 'Pages#bcrypt'
   match 'sleep/:time' => 'Pages#sleep'
