@@ -17,7 +17,10 @@ Ebt::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger
-  config.active_support.deprecation = :log
+  logstash      = ENV['LOGSTASH']      || '10.11.12.13'
+  logstash_port = ENV['LOGSTASH_PORT'] || '5228'
+  config.logger = ActiveSupport::TaggedLogging.new(LogStashLogger.new(logstash, logstash_port))
+  # config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
