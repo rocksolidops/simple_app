@@ -19,6 +19,7 @@ Ebt::Application.configure do
   # Print deprecation notices to the Rails logger
   logstash      = ENV['LOGSTASH']      || '10.11.12.13'
   logstash_port = ENV['LOGSTASH_PORT'] || '5228'
+  puts "Logging to #{logstash}:#{logstash_port}"
   config.logger = ActiveSupport::TaggedLogging.new(LogStashLogger.new(logstash, logstash_port))
   # config.active_support.deprecation = :log
 
