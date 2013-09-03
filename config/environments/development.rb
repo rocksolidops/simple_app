@@ -21,7 +21,7 @@ Ebt::Application.configure do
   logstash_port = ENV['LOGSTASH_PORT'] || '5228'
   puts "Logging to #{logstash}:#{logstash_port}"
   config.logger = ActiveSupport::TaggedLogging.new(LogStashLogger.new(logstash, logstash_port))
-  # config.active_support.deprecation = :log
+  config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
