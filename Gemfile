@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 
 gem 'lograge'
 gem 'logstash-logger'
+gem "logstash-event" # So Lograge outputs JSON
 
 gem 'mysql2'
 
@@ -35,5 +36,7 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
+group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-nav'
+end
