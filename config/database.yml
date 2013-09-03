@@ -1,22 +1,33 @@
 development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: true
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
-  username: root
-  password:
-  database: ebt_development
-  socket: <%= ENV['MYSQL_SOCKET'] || '/tmp/mysql.sock' %>
-
+  timeout: 5000
 test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: true
+  adapter: sqlite3
+  database: db/test.sqlite3
   pool: 5
-  username: root
-  password:
-  database: ebt_test
-  socket: <%= ENV['MYSQL_SOCKET'] || '/tmp/mysql.sock' %>
+  timeout: 5000
+
+# development:
+#   adapter: mysql2
+#   encoding: utf8
+#   reconnect: true
+#   pool: 5
+#   username: root
+#   password:
+#   database: ebt_development
+#   socket: <%= ENV['MYSQL_SOCKET'] || '/tmp/mysql.sock' %>
+
+# test:
+#   adapter: mysql2
+#   encoding: utf8
+#   reconnect: true
+#   pool: 5
+#   username: root
+#   password:
+#   database: ebt_test
+#   socket: <%= ENV['MYSQL_SOCKET'] || '/tmp/mysql.sock' %>
 
 production:
   adapter: mysql2

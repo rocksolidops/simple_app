@@ -6,7 +6,8 @@ gem 'lograge'
 gem 'logstash-logger'
 gem "logstash-event" # So Lograge outputs JSON
 
-gem 'mysql2'
+# gem 'mysql2'
+gem 'sqlite3'
 
 gem 'bcrypt-ruby', require: 'bcrypt'
 
