@@ -8,3 +8,7 @@ Once deployed, the interesting urls are
 - `/internals`
 - `/commands`
 - `/sleep/n` where n is an int or a float. Executes `sleep n`
+
+## LogStash
+
+Customize where things are logged to with `LOGSTASH` (IP or domain) and `LOGSTASH_PORT`.
