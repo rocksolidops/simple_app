@@ -12,18 +12,36 @@ end
 require 'pp'
 module Ebt
   class Application < Rails::Application
-    config.lograge.enabled = true
-    config.lograge.log_format = :logstash
-    config.lograge.custom_options = lambda do |event|
-      unwanted_keys = %w[format action controller]
-      params = event.payload[:params].reject { |key,_| unwanted_keys.include? key }
-      puts event.pretty_inspect
+    if Rails.env.production?
+      config.colorize_logging = false
+    else
+      config.colorize_logging = !!ENV['DISABLE_LOGSTASH']
+    end
 
-      # Log more stuff. Add more by adding to the payload hash in ApplicationController#append_info_to_payload
-      { ip: event.payload[:ip],
-        session_id: event.payload[:session_id],
-        params: params, host: event.payload[:host],
-        user_agent: event.payload[:user_agent] }
+    unless Rails.env.test? || ENV['DISABLE_LOGSTASH']
+      config.log_level = :info
+
+      config.lograge.enabled = true
+      config.lograge.log_format = :logstash
+      config.lograge.custom_options = lambda do |event|
+        unwanted_keys = %w[format action controller]
+        params = event.payload[:params].reject { |key,_| unwanted_keys.include? key }
+        puts event.pretty_inspect
+
+        # Log more stuff. Add more by adding to the payload hash in ApplicationController#append_info_to_payload
+        { ip: event.payload[:ip],
+          session_id: event.payload[:session_id],
+          params: params, host: event.payload[:host],
+          user_agent: event.payload[:user_agent],
+        }
+      end
+
+      logstash      = ENV['LOGSTASH']      || '10.11.12.13'
+      logstash_port = ENV['LOGSTASH_PORT'] || '5228'
+      puts "Logging to #{logstash}:#{logstash_port}"
+      logstash_logger       = LogStashLogger.new(logstash, logstash_port)
+      logstash_logger.level = Logger::DEBUG # or Logger::DEBUG, Logger::WARN etc.
+      config.logger         = ActiveSupport::TaggedLogging.new(logstash_logger)
     end
 
     # Settings in config/environments/* take precedence over those specified here.
