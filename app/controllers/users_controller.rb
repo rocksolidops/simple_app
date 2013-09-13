@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    Rails.logger.warn "Log level: #{Rails.configuration.log_level}"
     @users = User.all
 
     respond_to do |format|

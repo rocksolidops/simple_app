@@ -3,12 +3,14 @@ Ebt::Application.routes.draw do
 
   root to: 'Pages#sleep', options: { time: 0 }
 
-  match 'bcrypt/:cost' => 'Pages#bcrypt'
-  match 'sleep/:time' => 'Pages#sleep'
-  match 'status/:code' => 'Pages#status'
-  match 'internals' => 'Pages#internals'
-  match 'commands' => 'Pages#commands'
-  match 'health_check' => 'Pages#health_check'
+  match 'bcrypt/:cost'  => 'Pages#bcrypt'
+  match 'sleep/:time'   => 'Pages#sleep'
+  match 'status/:code'  => 'Pages#status'
+  match 'internals'     => 'Pages#internals'
+  match 'commands'      => 'Pages#commands'
+  match 'health_check'  => 'Pages#health_check'
+  match 'exception'     => 'Pages#exception'
+  match 'log'           => 'Pages#log'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

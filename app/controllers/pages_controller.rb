@@ -17,6 +17,18 @@ class PagesController < ApplicationController
   def internals
   end
 
+  def log
+    level = params[:level]      || :info
+    message = params[:message]  || "A random log message"
+    logger.send(level, message)
+  end
+
+  def exception
+    klass   = (params[:class]   || "RuntimeError").constantize
+    message = params[:message]  || "A random exception"
+    raise_exception klass, message
+  end
+
   def commands
     @commands = `bash -c "compgen -abck"`.split("\n")
   end
@@ -34,5 +46,12 @@ class PagesController < ApplicationController
     # 200 if all values are truthy
     status = checks.values.all? ? 200 : 500
     render  json: checks, status: status
+  end
+
+  private
+
+  # Lets me get at least 2 lines of backtrace
+  def raise_exception(klass, message)
+    raise klass, message
   end
 end
