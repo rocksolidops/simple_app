@@ -33,6 +33,7 @@ module Ebt
           session_id: event.payload[:session_id],
           params: params, host: event.payload[:host],
           user_agent: event.payload[:user_agent],
+          git_ref: GIT_REF,
         }
       end
 
